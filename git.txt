@@ -85,7 +85,7 @@ Resources
 \item Homebrew packages: https://formulae.brew.sh/formula/
 \item overview link https://www.youtube.com/watch?v=SELYgZvAZbU    Homebrew Tutorial: Simplify Software Installation on Mac Using This Package Manager
 \item overview / demonstrates some cool packages https://www.youtube.com/watch?v=Ym2pxzWpTNw      Advanced macOS Tricks and Utilities Using Terminal!
-\end{itemize}
+\end{itemize} 
 
 
 \section{Git}
