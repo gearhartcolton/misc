@@ -1,0 +1,123 @@
+% This is the main document that compiles and combines all of the sub files
+% This one has the preamble for all of the subfiles
+% !!!!! Need to have a copy of styleBase.sty in the Chapters folder as well
+\documentclass[11pt]{report}
+%\usepackage{subfiles}				% compile every subfile independently 
+\usepackage{Style-base}				% packages and definitions for my base style
+\usepackage{Style-code}				% packages and definitions for my code style
+% need to copy the .sty files into the same folder as the main document
+
+\title{Brew and git}
+%\author{}
+\date{\today}							
+
+\begin{document}
+\maketitle
+
+Command line stuff:
+\begin{itemize}
+	\item use single quotes to type folder names that include a space
+	\item show path to an application (or any file? not sure): which <app>, for example which tree
+	\item ../ goes up one level?
+	\item ls, cd, etc.
+\end{itemize}
+
+
+\section{Homebrew}
+
+This is just explanations of some commands, so not like a comprehensive description of everything homebrew.
+
+NOTE: \hl{can maybe change the formatting of the code snippets with the style}
+
+Installation
+\begin{itemize}
+	\item Need to install X code before can install homebrew.xcode-select --install
+	\item install homebrew: /bin/bash -c "(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	\item uninstall homebrew (note that this script doesn't remove any of the cask apps): /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	\item Xcode comes with a bunch on unneeded stuff, so can remove most of it and save like 8 GB of space / memory. https://macperformanceguide.com/blog/2016/20161031_1600-XCode-saving-space.html
+	\item Article to remove unneceassry things that come with installing Xcode. But not sure where Xcode gets saved, so moving on: https://macperformanceguide.com/blog/2016/20161031_1600-XCode-saving-space.html
+	\item (relocate?) can see where homebrew is actually installing packages with: which. for tree, it shows /usr/local/bin/tree, but this is actually a symbolic link (???). so if do ls -la /usr/local/bin/brew, it shows the exact path (??? not sure what -la does, are spaces important?)
+	\item Can ge tmore information about an installed package with: brew info <package>. This gives us when and where it was installed an some other stuff as well
+	\item If run this info command on a package that is not installed, we can see the dependencies for the package and whether or not they are currently installed (red X if not)
+	\item Can uninstall packages with: brew uninstall <package>
+\end{itemize}
+
+Commands and descriptions:
+\begin{itemize}
+	\item view list of packages that homebrew can install (there are lots of them): brew search.
+	\item Can also search for specific ones by adding a string after brew search. for example, brew search postges. can also do this on the homebrew packages site
+	\item SOmething about formula vs cask
+	\item Can install any package with this: brew install <...>; installing tree which displays directory structures nicely in command line
+	\item See what packages are currenlty installed: brew list
+	\item Update all packages (i.e. fetch new versions): brew update
+	\item See all packages that have an update available: brew outdated
+	\item Can then updated all of the outdated packages with: brew upgrade
+	\item By default, brew doesn't uninstall old versions of a package, so packages can accumulate over time. to remove all of the older versions: brew cleanup
+	\item Self diagnosis tool for brew (checks if any problems in the system):brew doctor
+	\item so far just been looking at / downloading command line tools
+\end{itemize}
+
+\begin{itemize}
+	\item canuse omebrew to install mac applications as well and lots of other softwares
+	\item can do this easily with an extension of homebrew, cask
+	\item similar syntax (for everything) to adding packages, but now add cask: brew cask install <app>.for example, brew cask install firefox
+	\item brew will go out and install firefox, this is an easier process that going to firefox's website, then downlaoding, then using the installer, etc
+	\item brew cask also has a search command
+	\item can run: brew cask info , on a package to see if it is indeed what we want. if we still want more info, can run: brew cask home <package>
+	\item ??? not sure if all of the commands for brew exist for brew cask??? (e.g. brew list? and brew outdated))
+	\item ?? what is this?  brew tap homebrew/cask, what does tap mean?  (something with updating homebrew I think?) see screenshot for available cask functions (use better word)... what is zaps?
+	\item can  eventualy use homebrew and write scripts to set up new machines???? video breifly mentions it, but likely more videos on it
+	\item usually install (fr all above) have been installing packages from the homebrew reposirotry, but we can use others/ Do this by "tap" the repository (which is a homebrew term)
+	\item do this with: brew tap <repository name> (for example heroku/brew, this name was found in the heroku documentation. after tapping, we can then access like normal
+\end{itemize}
+
+other packages (from second youtube link in the resources)
+\begin{itemize}
+	\item htop -> see graphical representation of how system resources are being used and can do some task related commands all within terminal (e.g. kill, filter, etc.)
+	\item speedtest -> test download and upload speed all from command line (avoids the hassel of going to speedtest.net)
+	\item imagemagick -> really useful when working with images (can easily convert files to different types, change the resolution, edit images by adding borders, etc. can also use it to modify many files at the same time by using some simple statements.
+\end{itemize}
+
+
+Resources
+\begin{itemize}
+\item Homebrew homepage:https://brew.sh/
+\item Homebrew packages: https://formulae.brew.sh/formula/
+\item overview link https://www.youtube.com/watch?v=SELYgZvAZbU    Homebrew Tutorial: Simplify Software Installation on Mac Using This Package Manager
+\item overview / demonstrates some cool packages https://www.youtube.com/watch?v=Ym2pxzWpTNw      Advanced macOS Tricks and Utilities Using Terminal!
+\end{itemize}
+
+
+\section{Git}
+
+Overview
+\begin{itemize}
+\item ????? add commetns about what is git from the befinning of the video
+\item also add stuff about git concepts
+\item How peeps usually use git -> have a repository on your local machine that you work on and make changes, and then and then upload it or push it to a remote repositoy like github (??? does it make the folder git? or add a .git to the folder?
+\item don't need an internet connection to work on a local repository, but you do need it to push to a remote repository.
+\item once intialized that folder as a git repository, can then do some other commands
+\item can install git from homebrew
+\end{itemize}
+
+Basic Commands
+\begin{itemize}
+\item git init -> initialize local git repository, creates a .git file in the project you're in, it is hidden by default, almost never need to go into this folder
+\item git add <files> -> (add files(s) to index) adds specified files to the "staging area" (also called the Index), they will then be ready for commit
+\item git status -> shows what you have in the staging area that are ready to be committed (check status of working tree). also shows paths (files?) that have differences between the staging area and the workgin tree
+\item git commit (commit changes to index) -> when ready, can commit files, whcih  takes everythign in the staging area and puts them into the local repository (other options that we will get into later)
+\item .... the rest of these are for remote repoistories like github
+\item git push -> (push to remote repository) takes the local repository we made and pushes it to a remote repository like github
+\item will need password, or can use ssh keys so don'e have to use password every time????
+\item git pull ((pull latest from remote repository) -> pull the latest changes from a remote repository
+\ite git clone (clone repository into a new directory) -> copies remote repos into curret folder. so if find a cool project on github and clone it, which downloads it to your machine
+\item there are graphical tools, where you don't need to use commands. but should use commnads beacause not really  learningn anythingn if use GUI (so don't know how git works under the hood, and if we ever don't have the GUI, we are tots lost)
+\item git can get complicated, but for what we are using it for it's not hard
+\end{itemize}
+
+Resources
+\begin{itemize}
+\item git intro vid   Git & GitHub Crash Course For Beginners   https://www.youtube.com/watch?v=SWYqp7iY_Tc
+\end{itemize}
+
+\end{document}  

@@ -1,0 +1,7 @@
+Warning: A newer Command Line Tools release is available.
+Update them from Software Update in System Preferences or run:
+  softwareupdate --all --install --force
+  
+  
+  not sure where I encountered this warning?
+  
