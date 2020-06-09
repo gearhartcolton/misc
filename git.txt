@@ -20,6 +20,13 @@ Command line stuff:
 	\item show path to an application (or any file? not sure): which <app>, for example which tree
 	\item ../ goes up one level?
 	\item ls, cd, etc.
+	\item look into bash for more fancier terminal like window
+	\item clear -> command that 'clears' the current screen, but it does this just by printing lots of newlines - the cleared contents just get scrolled up.
+	\item to actually clear / remove all output and have a blank terminal window, use command + k
+	\item create a new file: touch <filename + extension >
+	\item get better text editor???? look into projects in bbedit first
+	\item set defaults for finder to always have icon view and sort by name???
+	\item go up levels in terminal: cd .. will bring you back exactly one directory up. You can string together those to go up multiple directories, e.g. up 3 ../../../
 \end{itemize}
 
 
@@ -40,6 +47,7 @@ Installation
 	\item Can ge tmore information about an installed package with: brew info <package>. This gives us when and where it was installed an some other stuff as well
 	\item If run this info command on a package that is not installed, we can see the dependencies for the package and whether or not they are currently installed (red X if not)
 	\item Can uninstall packages with: brew uninstall <package>
+	\item this is where homebrew installs packages: /usr/local/Cellar
 \end{itemize}
 
 Commands and descriptions:
@@ -85,9 +93,10 @@ Resources
 \item Homebrew packages: https://formulae.brew.sh/formula/
 \item overview link https://www.youtube.com/watch?v=SELYgZvAZbU    Homebrew Tutorial: Simplify Software Installation on Mac Using This Package Manager
 \item overview / demonstrates some cool packages https://www.youtube.com/watch?v=Ym2pxzWpTNw      Advanced macOS Tricks and Utilities Using Terminal!
-\end{itemize} 
+\end{itemize}
 
 
+IDEA! can use brew / git to make my R templates, then just need to put in correct location! maybe do this with other tempates, like latex (book or stand alone article) or rmd
 \section{Git}
 
 Overview
@@ -102,9 +111,15 @@ Overview
 
 Basic Commands
 \begin{itemize}
-\item git init -> initialize local git repository, creates a .git file in the project you're in, it is hidden by default, almost never need to go into this folder
-\item git add <files> -> (add files(s) to index) adds specified files to the "staging area" (also called the Index), they will then be ready for commit
-\item git status -> shows what you have in the staging area that are ready to be committed (check status of working tree). also shows paths (files?) that have differences between the staging area and the workgin tree
+\item git init -> initialize local git repository (run this command while in the desired directory which will become the repository, creates a .git file in the directory you're in, it is hidden by default, almost never need to go into this folder (not necessary to know what the files in there mean). now that its a git repository, we can start running git commands
+\item git add <files> -> (add files(s) to index) adds specified files to the "staging area" (also called the Index), they will then be ready for commit (this command doesn't display or output anything), but can use git status to check what is in the staging area
+\item git status -> shows what you have in the staging area that are ready to be committed (check status of working tree). also shows paths (files?) that have differences between the staging area and the workgin tree. it shows files that have changes to be committed and added to staging area. also the untracked files (files with changes that have not been sent to the index)
+\item there are several ways to add files to the staging area: for example, git add *.html will add any html files to the index
+\item use git add . to add everything
+\item if a file is in the staging area and we edit and save it, it is now an untracked file so it needs to be added again in order to be ready to commit
+
+
+\item remove file from staging area: git rm --cached <file>...
 \item git commit (commit changes to index) -> when ready, can commit files, whcih  takes everythign in the staging area and puts them into the local repository (other options that we will get into later)
 \item .... the rest of these are for remote repoistories like github
 \item git push -> (push to remote repository) takes the local repository we made and pushes it to a remote repository like github
@@ -113,6 +128,26 @@ Basic Commands
 \ite git clone (clone repository into a new directory) -> copies remote repos into curret folder. so if find a cool project on github and clone it, which downloads it to your machine
 \item there are graphical tools, where you don't need to use commands. but should use commnads beacause not really  learningn anythingn if use GUI (so don't know how git works under the hood, and if we ever don't have the GUI, we are tots lost)
 \item git can get complicated, but for what we are using it for it's not hard
+	\item easiest way to show hidden files: command + shift + dot .
+	\item ??? delete a git repository?
+	\item at the very beginning before start doing anything, should add name and email to git. can use these commands: git config --global user.name '<my name>', and then run again, except use email instead of name (user.email 'email'
+	\item (come back to this!!!) git commit (without option): terminal changes to a new editor. everything after # is a comment (so it's ignored). have to add a note about the commit (by not using #) or else the commit wont work. 
+	\item process, type not on top line (it should automatically go into insert mode), then press esc to exit insert mode. then type :wq and then enter (which should show up on the last line after all of the ~. output gives us the number of files committed and supposedly thieir names (not sure why the names aren't displayed)
+	\item ??? cursor starts at top line and can start typing???
+	\item after committing everything, nothing is in the staging area, so git status says we have a clean tree
+	\item (will do this eventually) remove .ds-store files if they get too annoying: https://hints.binaryage.com/how-to-remove-ds-store-files-from-a-git-repo/ or https://code.likeagirl.io/how-to-get-rid-of-ds-store-and-node-modules-in-git-repositories-d37b8a391247
+	\item can use the commit command with an additional option to skip the whole edit stage described above: git commit -m '<comment>', inside the sinle quotes is the comment you want to add to this commit
+	\item git ignore: this is the file that we can include the files and directories that we don't want include in our repository at all. even if we use git add ., it won't include the ignored files
+	\item first need to create a .gitignore file, use this command: touch .gitignore so that it doen't throw an error about havinga file name start with a dot
+	\item for example, create a log.txt file, typically we don't want to include log files. then just open up the .gitignore file and type in the name of the file we want to ignore. then when run git add ., log.txt will not be included with the files in the staging area
+	\item can do this ignore thing with entire directories as well (/<folder name>, slightly different syntax because it's a folder). and can do this with expression such as *.txt
+	\item hsould just be able to add items to be ignored by putting on new line? but not sure why not working??????
+	
+\end{itemize}
+
+branches
+\begin{itemize}
+\item START HERE!!!!! 21 min into video
 \end{itemize}
 
 Resources
